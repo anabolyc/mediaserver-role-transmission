@@ -14,8 +14,7 @@ EXPOSE 9091
 
 RUN mkdir /transmission/download
 RUN mkdir /transmission/watch
-RUN mkdir /transmission/incomplete
 RUN mkdir /transmission/config
 
-CMD [ "--allowed", "127.*,192.168.1.*", "--watch-dir", "/transmission/watch", "--encryption-preferred", "--foreground", "--config-dir", "/transmission/config", "--incomplete-dir", "/transmission/incomplete", "--dht", "--no-auth", "--download-dir", "/transmission/download" ]
+CMD [ "--allowed", "127.*,192.168.1.*", "--watch-dir", "/transmission/watch", "--encryption-preferred", "--foreground", "--config-dir", "/transmission/config", "--no-incomplete-dir", "--dht", "--no-auth", "--download-dir", "/transmission/download" ]
 ENTRYPOINT ["/usr/bin/transmission-daemon"]

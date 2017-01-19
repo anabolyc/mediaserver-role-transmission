@@ -6,7 +6,7 @@ After=docker.service mnt-azure_storage_decoded.mount
 [Service]
 ExecStartPre=-/usr/bin/docker rm -f transmission-instance
 ExecStartPre=-/usr/bin/docker pull andreymalyshenko/mediaserver-role-transmission:armhf
-ExecStart=/usr/bin/docker run --name transmission-instance --net=host -v /mnt/azure_storage_decoded/_torrent:/transmission/download andreymalyshenko/mediaserver-role-transmission:armhf
+ExecStart=/usr/bin/docker run --name transmission-instance --net=host -v /var/lib/transmission-daemon/config-docker:/transmission/config -v /mnt/azure_storage_decoded/_torrent:/transmission/download andreymalyshenko/mediaserver-role-transmission:armhf
 ExecStartPost=/bin/sh -c 'while ! docker ps | grep transmission-instance ; do sleep 1; done'
 ExecStop=/usr/bin/docker rm -f transmission-instance
 TimeoutSec=0
